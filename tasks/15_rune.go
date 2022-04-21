@@ -7,16 +7,17 @@ import "fmt"
 //Решение: конвертировать всю строку в rune
 
 var justString string
+
 func someFunc() {
-	v := createHugeString(1 << 10)
-	r := []rune(v)
-	justString := string(r[:100])
+	v := createHugeString(1 << 10) // размер строки в 2 раза больше ожидаемого
+	r := []rune(v)                 // теперь мы будем работать с символами, а не с байтами
+	justString = string(r[:100])
 	fmt.Println(justString)
 }
 func createHugeString(size int) string {
 	var v string
 	for i := 0; i < size; i++ {
-		v += "К"
+		v += "Ы" // добавляем к строке символ,занимающий 2 байта
 	}
 
 	return v
@@ -25,4 +26,3 @@ func createHugeString(size int) string {
 func main() {
 	someFunc()
 }
-
