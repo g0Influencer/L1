@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	quit := make(chan bool)
@@ -8,11 +11,12 @@ func main() {
 		fmt.Println("Start")
 		for {
 			select {
-			case quit <- true:
+			case <-quit: // если пришли данные, завершаем работу
 				fmt.Println("Stop")
 				return
 			}
 		}
 	}()
-	<-quit
+	quit <- true // отправляем данные в канал
+	time.Sleep(1 * time.Second)
 }

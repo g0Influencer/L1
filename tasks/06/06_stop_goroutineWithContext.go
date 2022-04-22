@@ -21,8 +21,8 @@ func work(ctx context.Context) {
 }
 
 func main() {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background()) // создаем экземляр контекста
 	go work(ctx)
-	time.Sleep(2 * time.Millisecond)
-	cancel()
+	time.Sleep(10 * time.Second)
+	cancel() //  отмена контекста после завершения программы
 }
