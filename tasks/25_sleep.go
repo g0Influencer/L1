@@ -7,7 +7,7 @@ import (
 
 func Sleep(dur time.Duration) {
 	timer := time.NewTimer(dur)
-	<-timer.C
+	<-timer.C // C - канал, который должен вернуть значение через заданное время
 }
 
 func main() {

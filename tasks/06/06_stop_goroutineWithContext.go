@@ -9,13 +9,12 @@ import (
 func work(ctx context.Context) {
 	for {
 		select {
-		case <-ctx.Done():
+		case <-ctx.Done(): // если пришел сигнал об отмене контекста
 			fmt.Println("Exit")
 			return
 		default:
 			fmt.Println("working...")
 		}
-		time.Sleep(time.Millisecond)
 	}
 
 }
@@ -23,6 +22,8 @@ func work(ctx context.Context) {
 func main() {
 	ctx, cancel := context.WithCancel(context.Background()) // создаем экземляр контекста
 	go work(ctx)
-	time.Sleep(10 * time.Second)
-	cancel() //  отмена контекста после завершения программы
+	time.Sleep(2 * time.Second)
+	cancel() // отмена контекста
+	time.Sleep(2 * time.Second)
+
 }

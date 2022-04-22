@@ -5,22 +5,24 @@ import (
 	"strings"
 )
 
-func unique(s string) bool{
+func unique(s string) bool {
+	b := true
+	mp := make(map[string]int)
 	s = strings.ToLower(s)
-	for i:=range s{
-		tmp:=string(s[i])
-		count:= strings.Count(s,tmp)
-		if count %2 == 0{
+	//Проходимся по каждому символу в строке и пишем в мапу
+	for _, val := range s {
+		if _, ok := mp[string(val)]; ok {
 			return false
+		} else {
+			mp[string(val)]++
 		}
 	}
-	return true
+	return b
 
 }
 
-
-func main(){
-	s:= "cC"
+func main() {
+	s := "ccc"
 
 	fmt.Println(unique(s))
 
